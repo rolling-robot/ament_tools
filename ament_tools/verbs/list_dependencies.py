@@ -27,17 +27,17 @@ def prepare_arguments(parser):
         help='Base paths to recursively crawl for packages',
     )
     parser.add_argument(
-        '--build-deps',
+        '--build',
         action='store_true',
         help='Show build dependencies of a given package'
     )
     parser.add_argument(
-        '--exec-deps',
+        '--exec',
         action='store_true',
         help='Show exec dependencies of a given package'
     )
     parser.add_argument(
-        '--test-deps',
+        '--test',
         action='store_true',
         help='Show test dependencies of a given package'
     )
@@ -54,15 +54,15 @@ def main(options):
     packages = find_packages(options.basepath)
     for (path, package) in packages.items():
         if package.name == options.package:
-            if options.build_deps:
+            if options.build:
                 lines.extend(package.build_export_depends +
                              package.buildtool_export_depends +
                              package.build_depends +
                              package.buildtool_depends +
                              package.doc_depends)
-            if options.exec_deps:
+            if options.exec:
                 lines.extend(package.exec_depends)
-            if options.test_deps:
+            if options.test:
                 lines.extend(package.test_depends)
             for line in lines:
                 print(line)
