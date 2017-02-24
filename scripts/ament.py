@@ -68,6 +68,7 @@ def list_verbs(group):
         'build',
         'build_pkg',
         'list_packages',
+        'list_dependencies',
         'package_name',
         'package_version',
         'test',
