@@ -115,6 +115,9 @@ def prepare_arguments(parser, args):
         # Remove first position argument, because that will be the verb
         for i, arg in enumerate(filt_args):
             if not arg.startswith('-'):
+                # Stop here if other verb is given
+                if arg != 'build_pkg':
+                    return parser
                 del filt_args[i]
                 break
         # Parse the arguments to find the user's provided path (or the default)
